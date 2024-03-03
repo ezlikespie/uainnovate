@@ -117,7 +117,7 @@ const CandidateSelfRegister: React.FC = () => {
   return (
     <StructureNav>
       <div className='flex w-full max-w-[1280px] grow flex-col py-16'>
-        <h2 className='text-4xl font-bold'>Submit information</h2>
+        <h2 className='text-4xl font-bold'>Student signup</h2>
         <div
           className={`mt-4 flex flex-col${errors.length === 0 ? ' hidden' : ''}`}>
           {errors.map((item, index) => {

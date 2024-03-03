@@ -1,4 +1,4 @@
-import { NewCandidateSelfCredential } from '../views/Dashboard/CandidateSelfRegister';
+import { type NewCandidateSelfCredential } from '../views/Dashboard/CandidateSelfRegister';
 import { type NewCandidateCredential } from '../views/Dashboard/CreateCandidate';
 import isEmail from 'validator/es/lib/isEmail';
 

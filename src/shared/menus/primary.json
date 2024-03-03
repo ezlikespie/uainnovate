@@ -23,7 +23,7 @@
     "show": "loggedIn",
     "children": [
       {
-        "name": "Manage employees",
+        "name": "Manager commands",
         "path": "/employees",
         "show": "HR-Admin"
       },
