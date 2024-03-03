@@ -1,0 +1,36 @@
+.dropdown-content {
+  display: none;
+}
+.dropdown.active {
+  .dropdown-content {
+    display: block;
+    li:first-child {
+      a {
+        border-top-right-radius: 0.5rem;
+        border-top-left-radius: 0.5rem;
+      }
+      &.dropdown-action {
+        border-top-right-radius: 0.5rem;
+        border-top-left-radius: 0.5rem;
+      }
+    }
+    li:last-child {
+      a {
+        border-bottom-right-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+      }
+      &.dropdown-action {
+        border-bottom-right-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+      }
+    }
+  }
+}
+nav > ul {
+  & > li,
+  & > a {
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

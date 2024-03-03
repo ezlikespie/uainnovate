@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: nunito-sans;
+  font-style: normal;
+  src: url('/fonts/NunitoSans-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: nunito-sans;
+  font-style: italic;
+  src: url('/fonts/NunitoSans-Italic.ttf') format('truetype');
+}
+
+:root {
+  font-family: nunito-sans, Inter, system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgb(51 65 85);
+  background-color: #fff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.firebase-emulator-warning {
+  display: none;
+}

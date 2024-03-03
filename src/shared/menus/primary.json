@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Home",
+    "path": "/"
+  },
+  {
+    "name": "Login",
+    "path": "/login",
+    "show": "loggedOut"
+  },
+  {
+    "name": "Sign up",
+    "path": "/register",
+    "show": "loggedOut"
+  },
+  {
+    "name": "Dashboard",
+    "path": "/dashboard",
+    "show": "loggedIn"
+  },
+  {
+    "name": "Account",
+    "show": "loggedIn",
+    "children": [
+      {
+        "name": "Manage employees",
+        "path": "/employees",
+        "show": "HR-Admin"
+      },
+      {
+        "name": "Sign out",
+        "action": "logout"
+      }
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+.customGradient {
+  background: linear-gradient(270deg, #5236ab 0%, #e41937 100%);
+  background: -webkit-gradient(
+    linear,
+    right top,
+    left top,
+    from(#5236ab),
+    to(#e41937)
+  );
+}

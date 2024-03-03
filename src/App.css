@@ -1,0 +1,15 @@
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+body {
+  width: 100%;
+  min-height: 100vh;
+}
+input:focus::placeholder {
+  color: transparent;
+}
