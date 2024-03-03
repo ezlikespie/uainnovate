@@ -15,7 +15,7 @@ jobs:
       VITE_FIREBASE_PROJECT_ID: 'ua-innovate'
       VITE_FIREBASE_APP_ID: '1:745447357568:web:20c6d393e6b1123eba7a65'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
