@@ -127,6 +127,8 @@ const CandidateSearch: React.FC = () => {
         initial_event: doc.get('initial_event'),
         office_location: doc.get('office_location'),
         grad_date: doc.get('grad_date'),
+        interview_progress: doc.get('interview_progress'),
+        interest_level: doc.get('interest_level'),
         date_created: doc.get('date_created'),
       }));
       setCurrentCandidates(candidatesData);
@@ -180,10 +182,20 @@ const CandidateSearch: React.FC = () => {
   }, []);
 
   const handleFilterToggle = (): void => {
-    setFilterToggle(!filterToggle);
+    if (!filterToggle) {
+      setFilterToggle(true);
+      setSortToggle(false);
+    } else {
+      setFilterToggle(false);
+    }
   };
   const handleSortToggle = (): void => {
-    setSortToggle(!sortToggle);
+    if (!sortToggle) {
+      setSortToggle(true);
+      setFilterToggle(false);
+    } else {
+      setSortToggle(false);
+    }
   };
   const handleSortType = (value: string): void => {
     setSortType(value);
@@ -201,7 +213,8 @@ const CandidateSearch: React.FC = () => {
           () => {},
         );
       } else {
-        if (searchValue !== '') setSearchValue('');
+        setSearchValue('');
+        updateData(undefined, undefined, undefined, '').catch(() => {});
       }
     }
   };

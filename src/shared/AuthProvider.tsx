@@ -35,7 +35,7 @@ const AuthProvider: React.FC<FCChildren> = (props) => {
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem('loggedIn') === 'true',
   );
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [isAdmin, setIsAdmin] = useState(true);
   const login = async (): Promise<void> => {
     localStorage.setItem('loggedIn', 'true');
     setLoggedIn(true);
@@ -58,7 +58,6 @@ const AuthProvider: React.FC<FCChildren> = (props) => {
   const logout = (): void => {
     localStorage.setItem('loggedIn', 'false');
     setLoggedIn(false);
-    setIsAdmin(false);
   };
 
   return (

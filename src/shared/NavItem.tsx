@@ -56,6 +56,8 @@ const NavItem: React.FC<NavItemProps> = (props) => {
       navigate('/');
   }, [loggedIn]);
 
+  useEffect(() => {}, [isAdmin]);
+
   // Parent show condition
   if (data.show === 'loggedIn' && !loggedIn) return null;
   if (data.show === 'loggedOut' && loggedIn) return null;

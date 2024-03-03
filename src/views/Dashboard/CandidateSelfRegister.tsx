@@ -8,7 +8,7 @@ import {
 } from 'firebase/firestore';
 
 import StructureNav from '../../shared/StructureNav';
-import { validateCreateCandidate } from '../../shared/validator';
+import { validateCreateSelfCandidate } from '../../shared/validator';
 import CandidateSearch from './CandidateSearch';
 import { ScreenContext } from './HRDashboard';
 import { useContext, useState } from 'react';
@@ -26,23 +26,25 @@ export interface NewCandidateCredential {
   initialEvent: string;
 }
 
-const generatePassword = (): string => {
-  let pass = '';
-  const str =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZ' + 'abcdefghijklmnopqrstuvwxyz0123456789@#$';
-
-  for (let i = 1; i <= 8; i++) {
-    const char = Math.floor(Math.random() * str.length + 1);
-    pass += str.charAt(char);
-  }
-
-  return pass;
-};
+export interface NewCandidateSelfCredential {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  linkedin: string;
+  officeLocation: string;
+  gradDate: string;
+  role: string;
+  school: string;
+  initialEvent: string;
+}
 
 const CandidateSelfRegister: React.FC = () => {
   const { switchScreen } = useContext(ScreenContext);
   const [errors, setErrors] = useState<string[]>([]);
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
@@ -57,23 +59,9 @@ const CandidateSelfRegister: React.FC = () => {
   const navigate = useNavigate();
 
   const handleCreateCandidate = async (): Promise<void> => {
-    const tempPassword = generatePassword();
-    createUserWithEmailAndPassword(auth, email, tempPassword)
-      .then(() => {
-        // Registered successfully
-        setErrors(['Registration successful']);
-        setTimeout(() => {
-          navigate('/thank-you');
-        }, 1000);
-      })
-      .catch((error) => {
-        if (error.code === 'auth/email-already-in-use')
-          setErrors(['This user already exists. Try logging in instead']);
-        else {
-          setErrors(['There was an error signing up']);
-        }
-      });
     const tempData = {
+      email,
+      password,
       firstName,
       lastName,
       phone,
@@ -84,11 +72,27 @@ const CandidateSelfRegister: React.FC = () => {
       school,
       initialEvent,
     };
-    const tempErrors = validateCreateCandidate(tempData);
+    const tempErrors = validateCreateSelfCandidate(tempData);
+    if (tempErrors.length > 0) {
+      setErrors(tempErrors);
+    }
     if (tempErrors.length > 0) {
       setErrors(tempErrors);
     } else {
       try {
+        createUserWithEmailAndPassword(auth, email, password)
+          .then(() => {
+            // Registered successfully
+            setErrors(['Registration successful']);
+            navigate('/thank-you');
+          })
+          .catch((error) => {
+            if (error.code === 'auth/email-already-in-use')
+              setErrors(['This user already exists. Try logging in instead']);
+            else {
+              setErrors(['There was an error signing up']);
+            }
+          });
         switchScreen(<CandidateSearch />);
         const db = getFirestore(getApp());
         const collectionRef = collection(db, 'candidates');
@@ -138,7 +142,20 @@ const CandidateSelfRegister: React.FC = () => {
             }}
             className='border-primarytext mt-2 w-full max-w-[400px] select-none rounded border px-4 py-2 placeholder:text-slate-700'
           />
-          <div className='text-lg font-bold'>
+          <div className='mt-2 text-lg font-bold'>
+            Password:
+            <span className='ml-1 text-sm font-normal'>(required)</span>
+          </div>
+          <input
+            placeholder='Password'
+            type='password'
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            className='border-primarytext mt-2 w-full max-w-[400px] select-none rounded border px-4 py-2 placeholder:text-slate-700'
+          />
+          <div className='mt-2 text-lg font-bold'>
             First name:
             <span className='ml-1 text-sm font-normal'>(required)</span>
           </div>

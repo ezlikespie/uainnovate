@@ -1,3 +1,4 @@
+import { NewCandidateSelfCredential } from '../views/Dashboard/CandidateSelfRegister';
 import { type NewCandidateCredential } from '../views/Dashboard/CreateCandidate';
 import isEmail from 'validator/es/lib/isEmail';
 
@@ -36,4 +37,29 @@ const validateCreateCandidate = (cred: NewCandidateCredential): string[] => {
   return errors;
 };
 
-export { validateRegister, validateLogin, validateCreateCandidate };
+// Create candidate validation
+const validateCreateSelfCandidate = (
+  cred: NewCandidateSelfCredential,
+): string[] => {
+  const errors = [];
+  // Must have first name and last name
+  if (cred.email === '') errors.push('You must provide an email');
+  else if (!isEmail(cred.email)) errors.push('Invalid email');
+  if (cred.password === '') errors.push('You must provide a password');
+  else if (cred.password.length < 8)
+    errors.push('Password must be at least 8 characters');
+  if (cred.firstName === '') errors.push('You must provide a first name');
+  if (cred.lastName === '') errors.push('You must provide a last name');
+  if (cred.role === '') errors.push('You must provide a role');
+  if (cred.school === '') errors.push('You must provide a school');
+  if (cred.initialEvent === '')
+    errors.push('You must provide an initial event');
+  return errors;
+};
+
+export {
+  validateRegister,
+  validateLogin,
+  validateCreateCandidate,
+  validateCreateSelfCandidate,
+};

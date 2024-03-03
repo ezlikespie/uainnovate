@@ -35,6 +35,8 @@ const CreateCandidate: React.FC = () => {
   const [role, setRole] = useState('');
   const [school, setSchool] = useState('');
   const [initialEvent, setInitialEvent] = useState('');
+  const [interviewProgress, setInterviewProgress] = useState('');
+  const [interestLevel, setInterestLevel] = useState('');
 
   const screenSwitchHandler = (): void => {
     switchScreen(<CandidateSearch />);
@@ -51,6 +53,8 @@ const CreateCandidate: React.FC = () => {
       role,
       school,
       initialEvent,
+      interviewProgress,
+      interestLevel,
     };
     const tempErrors = validateCreateCandidate(tempData);
     if (tempErrors.length > 0) {
@@ -71,6 +75,8 @@ const CreateCandidate: React.FC = () => {
           job_role: role,
           school,
           initial_event: initialEvent,
+          interview_progress: interviewProgress,
+          interest_level: interestLevel,
         });
       } catch (e) {
         console.log(e);
@@ -107,7 +113,7 @@ const CreateCandidate: React.FC = () => {
       </div>
       <div className='mt-4'>
         <div className='text-lg font-bold'>
-          First name:
+          First Name:
           <span className='ml-1 text-sm font-normal'>(required)</span>
         </div>
         <input
@@ -120,7 +126,7 @@ const CreateCandidate: React.FC = () => {
           className='border-primarytext mt-2 w-full max-w-[400px] select-none rounded border px-4 py-2 placeholder:text-slate-700'
         />
         <div className='mt-2 text-lg font-bold'>
-          Last name:<span className='ml-1 text-sm font-normal'>(required)</span>
+          Last Name:<span className='ml-1 text-sm font-normal'>(required)</span>
         </div>
         <input
           placeholder='Last name'
@@ -169,7 +175,7 @@ const CreateCandidate: React.FC = () => {
           }}
           className='border-primarytext mt-2 w-full max-w-[400px] select-none rounded border px-4 py-2 placeholder:text-slate-700'
         />
-        <div className='mt-2 text-lg font-bold'>Phone number:</div>
+        <div className='mt-2 text-lg font-bold'>Phone Number:</div>
         <input
           placeholder='Phone number'
           type='text'
@@ -206,6 +212,26 @@ const CreateCandidate: React.FC = () => {
           value={gradDate}
           onChange={(e) => {
             setGradDate(e.target.value);
+          }}
+          className='border-primarytext mt-2 w-full max-w-[400px] select-none rounded border px-4 py-2 placeholder:text-slate-700'
+        />
+        <div className='mt-2 text-lg font-bold'>Interview Progress:</div>
+        <input
+          placeholder='Interview progress'
+          type='text'
+          value={interviewProgress}
+          onChange={(e) => {
+            setInterviewProgress(e.target.value);
+          }}
+          className='border-primarytext mt-2 w-full max-w-[400px] select-none rounded border px-4 py-2 placeholder:text-slate-700'
+        />
+        <div className='mt-2 text-lg font-bold'>Interest Level:</div>
+        <input
+          placeholder='Interest level'
+          type='text'
+          value={interestLevel}
+          onChange={(e) => {
+            setInterestLevel(e.target.value);
           }}
           className='border-primarytext mt-2 w-full max-w-[400px] select-none rounded border px-4 py-2 placeholder:text-slate-700'
         />

@@ -21,6 +21,8 @@ export interface CandidateData {
   phone?: string;
   linkedin?: string;
   initial_event: string;
+  interest_level: string;
+  interview_progress: string;
   office_location?: string;
   grad_date?: string;
   date_created: Timestamp;
@@ -39,6 +41,12 @@ const CandidatePage: React.FC<CandidatePageType> = (props) => {
   const [firstName, setFirstName] = useState(props.data.first_name ?? '');
   const [lastName, setLastName] = useState(props.data.last_name ?? '');
   const [phone, setPhone] = useState(props.data.phone ?? '');
+  const [interviewProgress, setInterviewProgress] = useState(
+    props.data.interview_progress ?? '',
+  );
+  const [interestLevel, setInterestLevel] = useState(
+    props.data.interest_level ?? '',
+  );
   const [linkedin, setLinkedin] = useState(props.data.linkedin ?? '');
   const [officeLocation, setOfficeLocation] = useState(
     props.data.office_location ?? '',
@@ -54,6 +62,12 @@ const CandidatePage: React.FC<CandidatePageType> = (props) => {
   const [firstNameOld, setFirstNameOld] = useState(props.data.first_name ?? '');
   const [lastNameOld, setLastNameOld] = useState(props.data.last_name ?? '');
   const [phoneOld, setPhoneOld] = useState(props.data.phone ?? '');
+  const [interviewProgressOld, setInterviewProgressOld] = useState(
+    props.data.interview_progress ?? '',
+  );
+  const [interestLevelOld, setInterestLevelOld] = useState(
+    props.data.interest_level ?? '',
+  );
   const [linkedinOld, setLinkedinOld] = useState(props.data.linkedin ?? '');
   const [officeLocationOld, setOfficeLocationOld] = useState(
     props.data.office_location ?? '',
@@ -83,6 +97,8 @@ const CandidatePage: React.FC<CandidatePageType> = (props) => {
       setFirstName(firstNameOld);
       setLastName(lastNameOld);
       setPhone(phoneOld);
+      setInterestLevel(interestLevelOld);
+      setInterviewProgress(interviewProgressOld);
       setLinkedin(linkedinOld);
       setOfficeLocation(officeLocationOld);
       setGradDate(gradDateOld);
@@ -97,6 +113,8 @@ const CandidatePage: React.FC<CandidatePageType> = (props) => {
     setFirstNameOld(firstName);
     setLastNameOld(lastName);
     setPhoneOld(phone);
+    setInterviewProgressOld(interviewProgress);
+    setInterestLevelOld(interestLevel);
     setLinkedinOld(linkedin);
     setOfficeLocationOld(officeLocation);
     setGradDateOld(gradDate);
@@ -262,6 +280,28 @@ const CandidatePage: React.FC<CandidatePageType> = (props) => {
           value={gradDate}
           onChange={(e) => {
             setGradDate(e.target.value);
+          }}
+          className='border-primarytext mt-2 w-full max-w-[400px] select-none rounded border px-4 py-2 placeholder:text-slate-700'
+        />
+        <div className='mt-2 text-lg font-bold'>Interview Progress:</div>
+        <input
+          placeholder='Interview progress'
+          type='text'
+          disabled={!editToggle}
+          value={interviewProgress}
+          onChange={(e) => {
+            setInterviewProgress(e.target.value);
+          }}
+          className='border-primarytext mt-2 w-full max-w-[400px] select-none rounded border px-4 py-2 placeholder:text-slate-700'
+        />
+        <div className='mt-2 text-lg font-bold'>Interest Level:</div>
+        <input
+          placeholder='Interest level'
+          type='text'
+          disabled={!editToggle}
+          value={interestLevel}
+          onChange={(e) => {
+            setInterviewProgress(e.target.value);
           }}
           className='border-primarytext mt-2 w-full max-w-[400px] select-none rounded border px-4 py-2 placeholder:text-slate-700'
         />
